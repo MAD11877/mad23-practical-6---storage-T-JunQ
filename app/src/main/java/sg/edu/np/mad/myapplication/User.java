@@ -11,6 +11,13 @@ public class User implements Serializable {
 
     public User(){}
 
+    public User(String n, String d, boolean f)
+    {
+        name= n;
+        description = d;
+        followed = f;
+    }
+
     public User(String n,String d,int i,boolean f)
     {
         name = n;

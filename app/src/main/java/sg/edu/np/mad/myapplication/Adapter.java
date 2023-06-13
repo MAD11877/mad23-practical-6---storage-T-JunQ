@@ -3,6 +3,7 @@ package sg.edu.np.mad.myapplication;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ public class Adapter extends RecyclerView.Adapter<ListViewHolder> {
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
         holder.name.setText(data.get(position).name);
         holder.desc.setText(data.get(position).description);
+
         View pfp = holder.pfp;
 
         User user = data.get(holder.getAdapterPosition());
@@ -39,11 +41,15 @@ public class Adapter extends RecyclerView.Adapter<ListViewHolder> {
                 getDialog(holder.context,user);
             }
         });
-
+        View largePfp = holder.largePfp;
         if (user.name.charAt(user.name.length()-1) == '7')
         {
-            View largePfp = holder.largePfp;
+            Log.d("hello", String.valueOf(user.name.charAt(user.name.length()-1))+" " +user.name);
             largePfp.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            largePfp.setVisibility(View.GONE);
         }
     }
 

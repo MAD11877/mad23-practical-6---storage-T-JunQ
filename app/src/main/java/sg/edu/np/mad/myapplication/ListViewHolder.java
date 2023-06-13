@@ -16,9 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ListViewHolder extends RecyclerView.ViewHolder {
     TextView name,desc;
     View pfp;
-
     View largePfp;
-
     Context context;
     public ListViewHolder(View itemView) {
         super(itemView);
@@ -28,7 +26,6 @@ public class ListViewHolder extends RecyclerView.ViewHolder {
         context = itemView.getContext();
         largePfp = itemView.findViewById(R.id.largePfp);
     }
-
 }
 
 

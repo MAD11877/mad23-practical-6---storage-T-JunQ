@@ -20,10 +20,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TextView name = findViewById(R.id.username);
-        Intent listEnd = getIntent();
-        User user = (User)listEnd.getSerializableExtra("ViewUser");
+        TextView desc = findViewById(R.id.desc);
+        Intent intent = getIntent();
+        User user = (User)intent.getSerializableExtra("ViewUser");
+        desc.setText(user.description);
         name.setText(user.name);
+
         Intent messageGroup = new Intent(MainActivity.this,MessageGroup.class);
+        UserDBHandler dbHandler = new UserDBHandler(this);
         Button follow = findViewById(R.id.follow);
         if (user.followed)
         {
@@ -37,11 +41,13 @@ public class MainActivity extends AppCompatActivity {
             {
                 follow.setText("Follow");
                 user.followed = false;
+                dbHandler.updateUser(user);
                 Toast.makeText(getApplicationContext(),"Unfollowed",Toast.LENGTH_SHORT).show();
             }
             else{
                 follow.setText("Unfollow");
                 user.followed = true;
+                dbHandler.updateUser(user);
                 Toast.makeText(getApplicationContext(),"Followed",Toast.LENGTH_SHORT).show();
             }
         });
